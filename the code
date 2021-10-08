@@ -1,0 +1,43 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	struct node
+	{
+		int data;
+		struct node * next; // as next is storing the address of a struct node so we type struct node befor ( * next )
+	};
+	struct node*head, *newnode, *temp; // new node to store the address of the newly created node, to feed it to temp->next
+	int choice, count =0;
+	head=0;
+	choice=1;
+	while(choice) // 1 means while will continue; default ;and o means while loop will be ended; agaian;default
+	{
+		newnode = (struct node*) malloc (sizeof (struct node));
+		cout<< " enter data :";
+		cin>> newnode->data;// we can never access any variable in the struct node directly always have to use the pointer who is storing the address of it
+		newnode->next = 0;// so every new node's next will have 0 so if its the last node, the node points to null
+		if( head ==0)
+		{
+			head = temp = newnode; // in this when the first time the above program gets executed, head will store the address , and will never change its value, so it will always store the address of the first node
+		}
+		else
+		{
+			temp->next=newnode;
+			temp = newnode;
+		}
+		cout<<"\n Do you want to add 1 more node? ( 0 for no, 1 for yes) :";
+		cin>>choice;
+	}
+	temp = head;
+	while(temp!= 0)
+	{
+		cout<<temp->data<<endl;
+		temp=temp->next;
+		count++;
+	}
+	cout<<"total numbers of elements are : "<< count;
+	return 0;
+	
+}
